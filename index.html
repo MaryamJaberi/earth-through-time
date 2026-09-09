@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Earth Through Time — map, life, and the history of knowing</title>
-  <meta name="description" content="An interactive teaching map of Earth from the beginning of the universe to speculative futures: continents, climate, life, societies, and the science of each age." />
+  <meta name="description" content="An interactive teaching map of Earth from the beginning of the universe to speculative futures." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
@@ -15,7 +15,7 @@
     <header>
       <div class="brand">
         <h1>Earth <span>Through Time</span></h1>
-        <p>Move the timeline. The map changes with the planet. The panels say what lived, who was here, and what people could know — in American English, from a working scientific consensus, not from a claim to have read every book.</p>
+        <p>Move the timeline. The map changes with the planet. The panels say what lived, who was here, and what people could know.</p>
       </div>
       <div class="era-chip">
         <div class="when" id="era-when">2026 CE</div>
@@ -34,7 +34,7 @@
       </section>
       <aside class="panel">
         <div class="tabs" role="tablist">
-          <button type="button" role="tab" data-tab="earth" aria-selected="true">Earth &amp; map</button>
+          <button type="button" role="tab" data-tab="earth" aria-selected="true">Earth & map</button>
           <button type="button" role="tab" data-tab="life" aria-selected="false">Life</button>
           <button type="button" role="tab" data-tab="humans" aria-selected="false">Humans</button>
           <button type="button" role="tab" data-tab="science" aria-selected="false">Science of the age</button>
@@ -51,27 +51,22 @@
         <button type="button" id="prev">Previous</button>
         <button type="button" id="play">Play</button>
         <button type="button" id="next">Next</button>
-        <span class="scale-label">From cosmic origin to +1,000 years — snap points, not a linear clock</span>
+        <span class="scale-label">From cosmic origin to +1,000 years</span>
       </div>
       <div class="rail">
         <input id="time-slider" type="range" min="0" max="24" value="21" step="1" aria-label="Select a time" />
         <div class="ticks" id="ticks"></div>
       </div>
     </div>
-    <footer class="legal">
-      Teaching prototype. Paleogeography follows the spirit of reconstructions by researchers such as Scotese, Torsvik &amp; Cocks, and later plate models — drawn here as simple shapes so the idea is readable, not as publication-grade coastlines.
-      Life and climate follow the ICS geologic time scale and standard paleobiology.
-      Future slices are scenarios.
-    </footer>
+    <footer class="legal">Teaching prototype. Maps are schematic. Future slices are scenarios.</footer>
   </div>
   <dialog id="about">
-    <h3>What this is — and is not</h3>
-    <p>No person or model has ingested “all history and geography books of all nationalities.” That request is larger than a library, and older texts disagree with each other and with rocks.</p>
-    <p>This site is a structured teaching instrument. Content is written in American English from a late-20th- and 21st-century scientific consensus, with named uncertainties.</p>
-    <p>Use it to see change. Check primary papers before you cite a date.</p>
+    <h3>What this is</h3>
+    <p>A teaching map of Earth through deep time, written in American English from a working scientific consensus. Not an archive of every book.</p>
     <button type="button" class="about-btn" id="about-close">Close</button>
   </dialog>
-  <script src="data.js"></script>
+  <script src="data-part1.js"></script>
+  <script src="data-part2.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
