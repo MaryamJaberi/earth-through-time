@@ -1,46 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Earth Through Time</title>
-  <meta name="description" content="Interactive teaching map of Earth through deep time." />
+  <title>زمین در گذر زمان</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Source+Sans+3:wght@400;600&family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="app">
     <header>
       <div class="brand">
-        <h1>Earth <span>Through Time</span></h1>
-        <p>Move the timeline. The map changes with the planet. The panels say what lived, who was here, and what people could know.</p>
+        <h1 data-i="title">زمین در گذر زمان</h1>
+        <p data-i="tagline">نوار زمان را بکش. نقشه عوض می‌شود. عکس‌ها می‌گویند چه می‌زیست.</p>
       </div>
       <div class="era-chip">
-        <div class="when" id="era-when">2026 CE</div>
-        <div class="name" id="era-name">The Measured Planet</div>
-        <div class="badge" id="era-badge">Present</div>
+        <div class="lang-switch">
+          <button type="button" id="lang-fa" class="on">فا</button>
+          <button type="button" id="lang-en">EN</button>
+        </div>
+        <div class="when" id="era-when"></div>
+        <div class="name" id="era-name"></div>
+        <div class="badge" id="era-badge"></div>
         <div style="margin-top:.7rem">
-          <button class="about-btn" id="about-btn" type="button">About this site</button>
+          <button class="about-btn" id="about-btn" type="button" data-i="about">درباره</button>
         </div>
       </div>
     </header>
     <main>
-      <section class="map-stage" aria-label="World map for the selected time">
-        <div class="stars"></div>
-        <div id="map-root"></div>
-        <div class="map-caption" id="map-caption"></div>
+      <section class="map-col">
+        <div class="map-stage">
+          <div class="stars"></div>
+          <div id="map-root"></div>
+          <div class="map-caption" id="map-caption"></div>
+        </div>
+        <div class="photo-block">
+          <h3 id="photo-heading">عکس و بازسازی</h3>
+          <div class="photos" id="photos"></div>
+        </div>
       </section>
       <aside class="panel">
         <div class="tabs" role="tablist">
-          <button type="button" role="tab" data-tab="earth" aria-selected="true">Earth & map</button>
-          <button type="button" role="tab" data-tab="life" aria-selected="false">Life</button>
-          <button type="button" role="tab" data-tab="humans" aria-selected="false">Humans</button>
-          <button type="button" role="tab" data-tab="science" aria-selected="false">Science of the age</button>
+          <button type="button" role="tab" data-tab="earth" aria-selected="true" data-i="tabEarth">زمین و نقشه</button>
+          <button type="button" role="tab" data-tab="life" aria-selected="false" data-i="tabLife">جان و گیاه</button>
+          <button type="button" role="tab" data-tab="humans" aria-selected="false" data-i="tabHumans">انسان‌ها</button>
+          <button type="button" role="tab" data-tab="science" aria-selected="false" data-i="tabScience">علم آن عصر</button>
         </div>
         <div class="panel-body">
-          <h2 id="card-title">Earth, climate, and the map</h2>
+          <h2 id="card-title"></h2>
           <p id="card-body"></p>
           <div class="note" id="card-note"></div>
         </div>
@@ -48,24 +57,26 @@
     </main>
     <div class="timeline-wrap">
       <div class="timeline-controls">
-        <button type="button" id="prev">Previous</button>
-        <button type="button" id="play">Play</button>
-        <button type="button" id="next">Next</button>
-        <span class="scale-label">From cosmic origin to +1,000 years</span>
+        <button type="button" id="prev" data-i="prev">قبلی</button>
+        <button type="button" id="play" data-i="play">پخش</button>
+        <button type="button" id="next" data-i="next">بعدی</button>
+        <span class="scale-label" data-i="scale"></span>
       </div>
       <div class="rail">
-        <input id="time-slider" type="range" min="0" max="24" value="21" step="1" aria-label="Select a time" />
+        <input id="time-slider" type="range" min="0" max="24" value="21" step="1" />
         <div class="ticks" id="ticks"></div>
       </div>
     </div>
-    <footer class="legal">Teaching prototype. Maps are schematic. Future slices are scenarios.</footer>
+    <footer class="legal" data-i="footer"></footer>
   </div>
   <dialog id="about">
-    <h3>What this is</h3>
-    <p>A teaching map of Earth through deep time, written in American English from a working scientific consensus. Not an archive of every book.</p>
-    <button type="button" class="about-btn" id="about-close">Close</button>
+    <h3 data-i="aboutTitle"></h3>
+    <p data-i="aboutBody"></p>
+    <button type="button" class="about-btn" id="about-close" data-i="close">بستن</button>
   </dialog>
   <script src="data.js"></script>
+  <script src="media.js"></script>
+  <script src="i18n.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
