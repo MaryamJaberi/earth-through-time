@@ -2,9 +2,12 @@
   const eras = window.EARTH_ERAS || [];
   const slider = document.getElementById("time-slider");
   if (!slider || !window.I18N) return;
-  let lang = "fa";
+  let lang = localStorage.getItem("earth-time-lang") === "en" ? "en" : "fa";
   const photosEl = document.getElementById("photos");
   const photoHead = document.getElementById("photo-heading");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const lightboxCap = document.getElementById("lightbox-cap");
   function t(k) { return (window.I18N[lang] && window.I18N[lang][k]) || k; }
   function field(era, name) {
     if (lang === "fa" && era[name + "Fa"]) return era[name + "Fa"];
@@ -62,6 +65,17 @@
         var cap = lang === "fa" ? (img.capFa || img.cap) : img.cap;
         return "<figure><img src=\"" + img.src + "\" alt=\"" + cap + "\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentNode.style.display='none'\"><figcaption>" + cap + "</figcaption></figure>";
       }).join("");
+      photosEl.querySelectorAll("figure").forEach(function (fig) {
+        fig.addEventListener("click", function () {
+          var img = fig.querySelector("img");
+          var cap = fig.querySelector("figcaption");
+          if (!img || !lightbox) return;
+          lightboxImg.src = img.src;
+          lightboxImg.alt = cap ? cap.textContent : "";
+          lightboxCap.textContent = (cap ? cap.textContent : "") + " — " + t("credit");
+          if (lightbox.showModal) lightbox.showModal();
+        });
+      });
     }
   }
   ["input", "change"].forEach(function (ev) { slider.addEventListener(ev, function () { setTimeout(paint, 0); }); });
@@ -72,8 +86,14 @@
   });
   var faBtn = document.getElementById("lang-fa");
   var enBtn = document.getElementById("lang-en");
-  if (faBtn) faBtn.addEventListener("click", function () { lang = "fa"; applyChrome(); paint(); });
-  if (enBtn) enBtn.addEventListener("click", function () { lang = "en"; applyChrome(); paint(); });
+  if (faBtn) faBtn.addEventListener("click", function () { lang = "fa"; localStorage.setItem("earth-time-lang", "fa"); applyChrome(); paint(); });
+  if (enBtn) enBtn.addEventListener("click", function () { lang = "en"; localStorage.setItem("earth-time-lang", "en"); applyChrome(); paint(); });
+  if (lightbox) {
+    var closeLb = document.getElementById("lightbox-close");
+    if (closeLb) closeLb.addEventListener("click", function () { lightbox.close(); });
+    lightbox.addEventListener("click", function (ev) { if (ev.target === lightbox) lightbox.close(); });
+  }
   applyChrome();
   setTimeout(paint, 0);
+  setTimeout(paint, 200);
 })();
